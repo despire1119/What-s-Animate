@@ -1,0 +1,43 @@
+/* CSS Document */
+*{margin:0;padding:0;font-size:12px;}
+body{ background:none;}
+input,button,select,textarea{outline:none;}
+ul,li,dl,ol{list-style:none;}
+a{color:#666; text-decoration:none;}
+
+.box{ width:980px; margin:0 auto;}
+.bcon{ width:270px; border:1px solid #eee; margin:30px auto;}
+.bcon h1{ border-bottom:1px solid #eee; padding:0 10px;}
+.bcon h1 b{ font:bold 14px/40px '宋体'; border-top:2px solid #3492D1; padding:0 8px; margin-top:-1px; display:inline-block;}
+
+.list-lh{ height:400px; overflow:hidden;}
+.list-lh li{ padding:10px;}
+.list-lh li.lieven{ background:#F0F2F3;}
+.list-lh li p{ height:24px; line-height:24px;}
+.list-lh li p a{ float:left;}
+.list-lh li p em{ width:80px; font:normal 12px/24px Arial; color:#FF3300; float:right; display:inline-block;}
+.list-lh li p span{ color:#999; float:right;}
+.list-lh li p a.btn-lh{ background:#28BD19; height:17px; line-height:17px; color:#fff; padding:0 5px; margin-top:4px; display:inline-block; float:right;}
+.btn-lh:hover{ color:#fff; text-decoration:none;}
+
+.btm p{ font:normal 12px/24px 'Microsoft YaHei'; text-align:center;}
+
+a.backToTop{width:60px; height:60px; background:#eaeaea url(../images/top.gif) no-repeat -51px 0; text-indent:-999em}
+a.backToTop:hover{background-position:-113px 0}
+
+.v-out{width:748px;margin:20px auto; position:relative;}
+.v-show{width:665px;overflow:hidden;position:relative;height:250px;float:left}
+.v-cont{ width:3325px;position:absolute;left:0px;top:0px;}
+.v-cont ul{float:left;text-align:center;}
+.v-cont ul li{width:665px;height:250px;background:#f8f8f8;float:left;margin-top:3px;}
+
+/*---圆圈---*/
+.circle{position:absolute;left: 40px;top: 290px;}
+.circle li{width:120px;height:60px;float:left;margin-right:10px;background:#ccc;cursor: pointer;}
+.circle .circle-cur{background:#f00}
+
+/*---切换---*/
+.prev,.next{float:left;padding:105px 9px 0}
+.prev a{ background:#f00;}
+.next a{background:#f00 }
+.prev,.prev a,.next,.next a{width:21px;height:28px; display:block}

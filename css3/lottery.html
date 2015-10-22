@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>css3大转盘抽奖</title>
+	<link rel="stylesheet" type="text/css" href="../css/css3/lottery.css" />
+</head>
+<body>
+	<div class="main">
+		<div class="zhuanpan-coat">
+            <div class="deng"></div>
+            <div class="arrows"></div>
+            <div class="start"></div>
+            <div class="stop"></div>
+        </div>
+	</div>
+	<div class="dialog" id="dialog_0">
+        <img src="../images/rule02.png">
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+
+    <div class="dialog" id="dialog_1">
+        <img src="../images/jiang-1a.png">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a>
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+    <div class="dialog" id="dialog_2">
+        <img src="../images/jiang-2a.png">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a>
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+    <div class="dialog" id="dialog_3">
+        <img src="../images/jiang-1a.png">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a>
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+    <div class="dialog" id="dialog_4">
+		<img src="../images/zj2.png" id="testDiv">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a> 
+        <a href="javascript:void(0)" class="close"></a> 
+    </div>
+    <div class="dialog" id="dialog_5">
+        <img src="../images/jiang-2a.png">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a>
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+    <div class="dialog" id="dialog_6">
+        <img src="../images/jiang-1a.png">
+        <a href="http://club.suning.com/thread-2246059-1-1.html" target="_blank" class="tip"></a>
+        <a href="javascript:void(0)" class="close"></a>
+    </div>
+    <div id="mask"></div>
+
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		//初始化转盘按钮
+	/*(function(){
+		var isActive = 'true';
+		if('true' == isActive){
+			$('.start').hide();
+			$('.stop').show();
+		}
+	})();*/
+    // 转盘抽奖脚本开始
+    ;(function(){
+	var _isLogin = false;//是否登录
+	var _isActive = true;//五分钟之内是否抽过
+
+        var timer = setInterval(function(){
+                        $('.deng').show().toggleClass('on');
+                    },500);
+        /*$('.start').click(function(){
+		if(!_isLogin){
+	//	    window.location.href = 'http://qing.suning.com/shopping/index.php?route=home/loginJump';
+		}else{
+		    if(!_isActive){
+			lottery();
+		    }
+		}
+        });*/
+
+		$('.start').click(function(){
+			if(_isActive){
+				lottery();
+		    }
+		});
+
+        function lottery(){
+            /*$.ajax({
+                type: "get",
+                url: "index.php?route=home/getLottery&src=p",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    ranNum = data.result;
+
+		            var arrows = $('.arrows');
+		            arrows.addClass('ani-rotate');
+		            setTimeout(function(){
+			        correct(ranNum);
+			
+			        countDown(new Date().getTime() + 1*60*1000,resetZP);
+			        clearInterval(timer);
+					$('.start').hide();
+					$('.stop').show();
+			        showDialog(ranNum);
+		            },3000);
+                }
+            });*/
+			var arrows = $('.arrows');
+            arrows.addClass('ani-rotate');
+            setTimeout(function(){
+	        correct(2);
+	
+	        countDown(new Date().getTime() + 1*60*1000,resetZP);
+	        clearInterval(timer);
+			$('.start').hide();
+			$('.stop').show();
+	        showDialog(2);
+            },3000);
+
+            function correct(ranNum){
+                $('.arrows').css({'-webkit-transform':'rotate('+60*ranNum+'deg)','-moz-transform':'rotate('+60*ranNum+'deg)','-ms-transform':'rotate('+60*ranNum+'deg)','-o-transform':'rotate('+60*ranNum+'deg)','transform':'rotate('+60*ranNum+'deg)'});
+            }
+
+            function getRandom(min,max){
+                var range = max - min;
+                return Math.floor(Math.random()*range + min);
+            }
+        }
+
+        function resetZP(){
+            $('.time-coat').hide();
+            $('.start').show();
+            $('.stop').hide();
+            $('.arrows').attr('class','arrows').css({'-webkit-transform':'rotate(0)','-moz-transform':'rotate(0)','-ms-transform':'rotate(0)','-o-transform':'rotate(0)','transform':'rotate(0)'});
+            timer = setInterval(function(){
+                        $('.deng').show().toggleClass('on');
+                    },500); 
+        }
+        function countDown(etime,callback){
+            var timedown = $('.time');
+            var ntime;
+
+            var timer = setInterval(action,1000);
+
+            function action(){
+                ntime = new Date().getTime();
+                var left_time = (etime - ntime) / 1000;
+                var left_minute, left_second, time_str;
+
+                timedown.html('<span class="minute">00</span><span class="second">00</span>');
+                if (left_time > 0 ) {
+                    left_minute = Math.floor( left_time / 60 );
+                    left_second = Math.floor( left_time % 60 );                         
+                    timedown.find('.minute').html( formatNum(left_minute) );
+                    timedown.find('.second').html( formatNum(left_second) );                    
+                } else {
+                    clearInterval(timer);
+                    callback();
+                }
+
+            }    
+
+            //格式化数字: 1 -> 01
+            function formatNum(num){
+                return num.toString().replace(/^(\d)$/, "0$1");
+            }  
+
+        }
+
+    })()
+    // 转盘抽奖脚本结束
+
+	function showDialog(id){
+        $('#mask').fadeIn();
+        $('#dialog_'+id).fadeIn();             
+    }    
+
+	$('.dialog').find('.close').click(function(){
+		$('.dialog').fadeOut();
+		$('#mask').fadeOut();
+	})
+
+
+	</script>
+</body>
+</html>

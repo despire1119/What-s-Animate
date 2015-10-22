@@ -1,0 +1,90 @@
+*{
+			margin: 0;
+			padding: 0;
+		}
+		.ani-coat {
+		  width: 1000px;
+		  height: 547px;
+		  margin: 0 auto;
+		  margin-top: 100px;
+		  position: relative;
+		}
+		.ani-coat .board-coat {
+		  position: absolute;
+		  width: 1000px;
+		  height: 455px;
+		  left: 0px;
+		  top: 40px;
+		  overflow: hidden;
+		}
+		.ani-coat .board-coat .board {
+		  width: 265px;
+		  height: 910px;
+		  left: 50%;
+		  margin-left: -132px;
+		  top: 0px;
+		  background: url(../images/daojishipai6.9.png) no-repeat center top;
+		  position: absolute;
+		}
+		.ani-coat .board-coat .board .day {
+		  font-size: 180px;
+		  font-family: "impact";
+		  position: absolute;
+		  right: 85px;
+		  top: 40px;
+		  width: 200px;
+		  text-align: right;
+		  color: #d10964;
+		}
+		.ani-coat .board-coat .board .time {
+		  width: 260px;
+		  height: 38px;
+		  position: absolute;
+		  left: 40px;
+		  top: 280px;
+		}
+		.ani-coat .board-coat .board .time span {
+		    display: inline-block;
+		    font-family: sans-serif;
+		    width: 48px;
+		    height: 30px;
+		    font-size: 30px;
+		    color: #fff;
+		    margin-right: 22px;
+		    font-family: "impact";
+		}
+
+		.ani-coat .board-coat .board .time-other {
+		    width: 260px;
+		    height: 38px;
+		    position: absolute;
+		    left: 40px;
+		    top: 275px;
+		}
+		.ani-coat .board-coat .board .time-other span {
+		    display: inline-block;
+		    font-family: sans-serif;
+		    width: 48px;
+		    height: 30px;
+		    font-size: 30px;
+		    color: #fff;
+		    margin-right: 22px;
+		    font-family: "impact";
+		}
+		.ani-coat .board-coat .board.go{
+          -webkit-transition:all 0.6s ease-out;
+          -webkit-transform:rotate(180deg);
+          -webkit-transform-origin:50% 50%;
+          -moz-transition:all 1s ease-out;
+          -moz-transform:rotate(180deg);
+          -moz-transform-origin:50% 50%;
+          -ms-transition:all 1s ease-out;
+          -ms-transform:rotate(180deg);
+          -ms-transform-origin:50% 50%;          
+          -o-transition:all 1s ease-out;
+          -o-transform:rotate(180deg);
+          -o-transform-origin:50% 50%;
+          transition:all 0.6s ease-out;
+          transform:rotate(180deg);
+          transform-origin:50% 50%; 
+        }

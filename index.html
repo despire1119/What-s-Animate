@@ -1,0 +1,358 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>浅谈前端动画</title>
+	<meta name="author" content="aohui" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+	<link rel="stylesheet" type="text/css" href="css/example.css" />
+	<!--[if IE]>
+		<script type="text/javascript">
+			 var console = { log: function() {} };
+		</script>
+	<![endif]-->
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/jquery.easings.min.js"></script>
+	<script type="text/javascript" src="js/jquery.fullPage.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#fullpage').fullpage({
+				sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#1bbc9b', '#2C3437'],
+				anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+				menu: '#menu',
+				css3: true,
+				scrollingSpeed: 1000,
+				navigation: true,
+        		navigationPosition: 'right',
+        		navigationTooltips: ['jQuery动画', 'CSS3动画', 'CANVAS动画', 'SVG动画','END'],
+        		afterLoad:function(anchorLink,index){
+        			if(index==5){
+			    		animate();
+			    	}
+        
+			        $(".end-content .play").click(animate).mouseover(function(){
+			          $(".end-content .play").css({"background-color":"#A55"});
+			        }).mouseout(function(){
+			          $(".end-content .play").css({"background-color":"#060"});
+			        });
+
+			        function animate(){
+			          $('.end-content>div>div').each(function(id){
+			          $(this).css({
+			            position: 'relative',
+			            top: '-200px',
+			            opacity: 0
+			          });
+			          var wait = Math.floor((Math.random()*3000)+1);
+			          $(this).delay(wait).animate({
+			            top: '0px',
+			            opacity: 1
+			          },1000);
+			        });
+			      }
+        		}
+			});
+
+			$('#showExamples').click(function(e){
+				e.stopPropagation();
+				e.preventDefault();
+				$('#examplesList').toggle();
+			});
+
+			$('html').click(function(){
+				$('#examplesList').hide();
+			});
+		});
+	</script>
+
+</head>
+<body>
+<div class="ppt-title">
+	浅谈前端动画
+</div>
+<ul id="menu">
+	<li data-menuanchor="firstPage" class="active"><a href="#firstPage">jQuery动画</a></li>
+	<li data-menuanchor="secondPage"><a href="#secondPage">CSS3动画</a></li>
+	<li data-menuanchor="3rdPage"><a href="#3rdPage">CANVAS动画</a></li>
+	<li data-menuanchor="4thpage"><a href="#4thpage">SVG动画</a></li>
+	<li data-menuanchor="lastPage"><a href="#lastPage">END</a></li>
+</ul>
+
+<div id="fullpage">
+
+	<div class="section active" id="section0">
+		<h1>jQuery animate()</h1>
+		<div class="h40"></div>
+		<p>$(selector).animate(styles,speed,easing,callback)</p>
+		<div class="h40"></div>
+		<p id="donations">
+			只有数字值可创建动画（比如 "margin:30px"）。字符串值无法创建动画（比如 "background-color:red"）
+		</p>
+
+	</div>
+	<div class="section" id="section1">
+		<div class="slide active">
+			<div class="intro">
+				<h1>CSS3动画</h1>
+				<p>过渡：transition；CSS3 2D/3D 转换：transform；CSS3 动画：animation</p>
+				<img src="images/slider.png" alt="slider" height="132" width="662" />
+			</div>
+
+		</div>
+		<div class="slide">
+			<div class="intro">
+				<img src="images/1.png" alt="simple" height="176" width="176" />
+				<h1>Transition</h1>
+				<p><a href="http://www.w3cplus.com/content/css3-transition/" class="btn-link" target="_blank">参考资料</a></p>
+			</div>
+		</div>
+		<div class="slide">
+			<div class="intro">
+				<img src="images/2.png" alt="Cool" height="176" width="176" />
+				<h1>Transform</h1>
+				<p><a href="http://www.w3cplus.com/content/css3-transform/" class="btn-link" target="_blank">参考资料</a></p>
+			</div>
+		</div>
+		<div class="slide">
+			<div class="intro">
+				<img src="images/3.png" alt="Compatible" height="176" width="176" />
+				<h1>Animation</h1>
+				<p><a href="http://www.w3cplus.com/css3/CSS3-animation.html" class="btn-link" target="_blank">参考资料</a></p>
+			</div>
+		</div>
+	</div>
+	<div class="section" id="section2">
+		<div class="intro">
+			<h1>canvas动画</h1>
+			<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations" class="btn-link" target="_blank">参考资料</a></p>
+		</div>
+	</div>
+	<div class="section" id="section3">
+		<div class="intro">
+			<h1>svg动画</h1>
+			<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/SVG" class="btn-link" target="_blank">参考资料</a></p>
+		</div>
+	</div>
+	<div class="section" id="section4">
+		<div class="intro">
+			<h1 style="color:#fff;">谢谢</h1>
+			<div class='end-content'>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		      </div>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px'></div>
+		        <div></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div style='margin-left:102px' class="play"></div>
+		        <div class="play"></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		      </div>
+		      <div style='padding-left:80px'>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:40px'></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		      </div>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:180px' class="play"></div>
+		        <div class="play"></div>
+		        <div class="play"></div>
+		      </div>
+		      <div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div></div>
+		        <div style='margin-left:180px' class="play"></div>
+		        <div class="play"></div>
+		      </div>
+		  </div>
+		</div>
+	</div>
+</div>
+
+<div id="infoMenu">
+	<ul>
+		<li>
+			<a href="#" id="showExamples">宝盒子</a>
+			<div id="examplesList">
+				<div class="column">
+					<h3>jQuery动画</h3>
+					<ul>
+						<li><a href="jQuery/animate01.html" target="_blank">无间隙滚动</a></li>
+						<li><a href="jQuery/animate02.html" target="_blank">返回顶部</a></li>
+						<li><a href="jQuery/animate03.html" target="_blank">左右切换幻灯片</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<h3>CSS3动画</h3>
+					<ul>
+						<li><a href="css3/loading.html" target="_blank">加载</a></li>
+						<li><a href="css3/countdown.html" target="_blank">倒计时</a></li>
+						<li><a href="css3/lottery.html" target="_blank">大转盘</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<h3>CANVAS动画</h3>
+					<ul>
+						<li><a href="canvas/lottery.html" target="_blank">大转盘</a></li>
+						<li><a href="canvas/guaguale.html" target="_blank">橡皮擦</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<h3>SVG动画</h3>
+					<ul>
+						<li><a href="http://www.zhangxinxu.com/wordpress/2014/08/so-powerful-svg-smil-animation/" target="_blank">SVG SMIL animation</a></li>
+						<li><a href="svg/loading.html" target="_blank">扇形加载</a></li>
+						<li><a href="svg/clock.html" target="_blank">时钟</a></li>
+					</ul>
+				</div>
+				<div class="column">
+					<h3>工具</h3>
+					<ul>
+						<li><a href="http://caniuse.com/" target="_blank">caniuse</a></li>
+						<li><a href="http://cubic-bezier.com/" target="_blank">cubic-bezier</a></li>
+						<li><a href="http://daneden.github.io/animate.css/" target="_blank">animate.css</a></li>
+						<li><a href="http://h5bp.github.io/Effeckt.css/" target="_blank">Effeckt.css</a></li>
+						<li><a href="http://ianlunn.github.io/Hover/" target="_blank">Hover.css</a></li>
+						<li><a href="magic/index.html" target="_blank">magic.css</a></li>
+						<li><a href="http://www.zhangxinxu.com/GitHub/demo-Snap.svg/demo/basic/Element.after.php" target="_blank">snapsvg中文版</a></li>
+						<li><a href="http://snapsvg.io/" target="_blank">snapsvg</a></li>
+					</ul>
+				</div>
+			</div>
+
+		</li>
+	</ul>
+</div>
+</body>
+</html>

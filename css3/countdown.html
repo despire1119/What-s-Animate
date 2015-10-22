@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>css3倒计时</title>
+    <link rel="stylesheet" type="text/css" href="../css/css3/countdown.css" />
+</head>
+<body>
+	<div class="ani-coat">
+		<div class="board-coat" id="boardCoat">
+          <div class="board">
+            <div class="day">7</div><!-- 倒计时天数 -->
+            <div class="time"></div>
+          </div>
+          <div class="board other" id="other_3">
+            <div class="day">9</div>
+            <div class="time-other"><span class="hour">00</span><span class="minute">00</span><span class="second">00</span></div>
+          </div> 
+          <div class="board other" id="other_2">
+            <div class="day">10</div>
+            <div class="time-other"><span class="hour">00</span><span class="minute">00</span><span class="second">00</span></div>
+          </div>
+          <div class="board other" id="other_1">
+            <div class="day">11</div>
+            <div class="time-other"><span class="hour">00</span><span class="minute">00</span><span class="second">00</span></div>
+          </div> 
+
+        </div>
+	</div>
+	<script src="../js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		//倒计时控件start
+    ;(function($){
+
+        $.fn.todaytimedown = function(options){
+            var opts = $.extend({},$.fn.todaytimedown.defaults,options);
+
+            return this.each(function(){
+                var timedown = $(this);
+
+                var endHour = opts.endHour;
+                var now = new Date();
+                var nowY = now.getFullYear(),
+                    nowM = now.getMonth()+1,
+                    nowD = now.getDate();  
+
+                var endDateStr = nowY + '/' + nowM + '/' + nowD + ' ' + endHour;               
+
+                var ntime,
+                    etime = new Date(endDateStr).getTime();
+
+                var timer = setInterval(action,1000);
+
+                function action(){
+                    ntime = new Date().getTime();
+                    var left_time = (etime - ntime) / 1000;
+                    var left_hour, left_minute, left_second, time_str;
+
+                    timedown.html('<span class="hour">00</span><span class="minute">00</span><span class="second">00</span>');
+                    if (left_time > 0 ) {
+                        left_hour = Math.floor( left_time / 3600 );
+                        left_minute = Math.floor( (left_time - left_hour*3600) / 60 );
+                        left_second = Math.floor( left_time % 60 );                         
+                        timedown.find('.hour').html( formatNum(left_hour) );
+                        timedown.find('.minute').html( formatNum(left_minute) );
+                        timedown.find('.second').html( formatNum(left_second) );                    
+                    } else {
+                        clearInterval(timer);
+                    }
+
+                }
+
+            });
+
+        }
+        //格式化数字: 1 -> 01
+        function formatNum(num){
+            return num.toString().replace(/^(\d)$/, "0$1");
+        }  
+
+        $.fn.todaytimedown.defaults = {
+            endHour : '23:59:59'
+        }
+    })(jQuery);
+//倒计时控件end
+$(function(){
+	if ($.browser.msie && parseInt($.browser.version) < 10.0) {
+            // alert(parseInt($.browser.version) < 11.0);
+            $('#boardCoat').find('.other').hide();
+        }else{
+            $('#other_1').addClass('go');
+            setTimeout(function(){
+                $('#other_2').addClass('go');
+            },300);
+            setTimeout(function(){
+                $('#other_3').addClass('go');
+            },600);            
+        }
+
+        $(".time").todaytimedown();
+
+})
+	</script>
+</body>
+</html>
